@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TAERAE IN WONDERLAND - Lucky Draw</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <h1 onclick="app.checkAdmin()">TAERAE IN WONDERLAND</h1>
+    </header>
+
+    <main id="screen-main" class="screen active">
+        <div class="day-selector">
+            <span id="current-day-label">DAY 1</span>
+        </div>
+        <h2>럭키드로우</h2>
+        <div class="counter">
+            <button onclick="app.changeCount(-1)">-</button>
+            <span id="draw-count">1</span>
+            <button onclick="app.changeCount(1)">+</button>
+        </div>
+        <button class="btn-primary" onclick="app.startDraw()">추첨하기</button>
+    </main>
+
+    <main id="screen-drawing" class="screen">
+        <h2 id="draw-status-text">추첨 중...</h2>
+        <div id="draw-item-display" class="item-display" onclick="app.nextDrawStep()">
+            </div>
+        <p class="hint-text" id="draw-hint">화면을 터치해주세요</p>
+    </main>
+
+    <main id="screen-result" class="screen">
+        <h2>🎉 결과 🎉</h2>
+        <ul id="result-list" class="result-list"></ul>
+        <button class="btn-primary" onclick="app.resetToMain()">처음으로</button>
+    </main>
+
+    <main id="screen-admin" class="screen">
+        <h2>관리자 모드</h2>
+        <div class="admin-controls">
+            <label>진행 일자 선택:</label>
+            <select id="admin-day-select" onchange="app.changeDay()">
+                <option value="day1">DAY 1 (일)</option>
+                <option value="day2">DAY 2 (월)</option>
+                <option value="day3">DAY 3 (화)</option>
+            </select>
+        </div>
+        <div id="admin-inventory" class="inventory-list"></div>
+        <div class="admin-actions">
+            <button class="btn-secondary" onclick="app.resetInventory()">재고 초기화 (위험)</button>
+            <button class="btn-primary" onclick="app.exitAdmin()">닫기</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
